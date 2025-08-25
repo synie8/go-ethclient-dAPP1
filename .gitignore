@@ -1,0 +1,15 @@
+# 忽略环境变量文件
+.env
+.env.local
+.env.production
+
+# 忽略编译文件
+dapp1.exe
+dapp1
+
+# 忽略IDE文件
+.vscode/
+.idea/
+
+# 忽略日志文件
+*.log

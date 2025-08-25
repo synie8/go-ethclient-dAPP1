@@ -1,6 +1,7 @@
 package main
 
 import (
+	"dapp1/config"
 	"dapp1/task1"
 	"log"
 	"math/big"
@@ -8,17 +9,18 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-const (
-	// 链上合约地址
-	SEPOLIA_URL = "https://eth-sepolia.g.alchemy.com/v2/z5157D8Ab1rxPnghJcJ1y"
-)
-
 func main() {
-	client, err := ethclient.Dial(SEPOLIA_URL)
+	// 初始化配置
+	cfg := config.GetConfig()
+
+	client, err := ethclient.Dial(cfg.SepoliaURL)
 	if err != nil {
 		log.Fatal(err)
 	}
+	// 查询9058241区块信息
 	blockNumber := big.NewInt(9058241)
 	task1.QueryByBlockNumber(client, blockNumber)
+	// 转账eth
+	task1.TransferEth(client, cfg.AccountAddress2, float64(0.1), cfg.GasLimit, cfg.PrivateKey)
 
 }
