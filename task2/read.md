@@ -1,0 +1,1 @@
+abigen --bin=Counter.bin --abi=Counter.abi --pkg=task2 --out=Counter.go
